@@ -111,12 +111,12 @@ def inference(event) -> Union[str, Generator[str, None, None]]:
     for key, value in settings.items():
         setattr(generator.settings, key, value)
 
-    if stream:
-        output: Union[str, Generator[str, None, None]] = generate_with_streaming(prompt, max_new_tokens)
-        for res in output:
-            yield res
-    else:
-        output_text = generator.generate_simple(prompt, max_new_tokens = max_new_tokens)
-        yield output_text[len(prompt):]
+    # if stream:
+    #     output: Union[str, Generator[str, None, None]] = generate_with_streaming(prompt, max_new_tokens)
+    #     for res in output:
+    #         yield res
+    # else:
+    output_text = generator.generate_simple(prompt, max_new_tokens = max_new_tokens)
+    return output_text[len(prompt):]
 
 runpod.serverless.start({"handler": inference})

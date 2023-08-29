@@ -12,6 +12,7 @@ RUN pip install -r exllama/requirements.txt
 
 COPY handler.py /data/handler.py
 COPY __init.py__ /data/__init__.py
+COPY test_input.json /data/test_input.json
 
 ENV PYTHONPATH=/data/exllama
 ENV MODEL_REPO=""
